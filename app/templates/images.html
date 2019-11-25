@@ -1,0 +1,37 @@
+<head>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src='../../static/js/image.js'></script>
+</head>
+
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        img{
+            max-width:200px;
+            max-height:200px;
+            display:inline-block;
+        }
+    </style>
+    <h1><a href= {{ url_for('addSearchWord', concept=concept ) }}>{{ concept }}</a></h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.image.label }}<br>
+            {{ form.image}}<br>
+            {% for error in form.image.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <div>
+        {% for image in images %}
+            <span id='{{ image.id }}'>
+                <img  src={{ image.image }} alt={{ searchWord.searchWord }}></img>
+                <button type="button" class='delete' data-id='{{ image.id }}' data-image='{{ image.image }}' data-word='{{ image.searchWord }}' data-concept='{{ concept }}'>Delete</button>
+            </span>
+        {% endfor %}
+    </div>
+{% endblock %}

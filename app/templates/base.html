@@ -1,5 +1,9 @@
 <html>
     <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         {% if title %}
         <title>{{ title }} - Symbol Dictionary</title>
         {% else %}
@@ -8,13 +12,14 @@
     </head>
     <body>
       <div>
-          Microblog:
+          Symbol Dictionary:
           <a href="{{ url_for('index') }}">Home</a>
           {% if current_user.is_anonymous %}
           <a href="{{ url_for('login') }}">Login</a>
           {% else %}
           <a href="{{ url_for('logout') }}">Logout</a>
           {% endif %}
+          <a href="{{ url_for('import_JSON') }}">Import</a>
       </div>
         <hr>
         {% with messages = get_flashed_messages() %}

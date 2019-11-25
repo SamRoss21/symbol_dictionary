@@ -1,0 +1,44 @@
+<head>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src='../static/js/search_word.js'></script>
+</head>
+
+{% extends "base.html" %}
+
+{% block content %}
+    <style>
+        img{
+            max-width:200px;
+            max-height:200px;
+            display:inline-block;
+        }
+    </style>
+    <h1>{{ concept }}</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.searchWord.label }}<br>
+            {{ form.searchWord}}<br>
+            {% for error in form.searchWord.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <div class='row'>
+        <div class="col-md-2">
+            {% for searchWord in searchWords %}
+                <ul id='{{ searchWord.searchWord }}'>
+                    <li><a href= {{ url_for('addImage', concept=concept, searchWord=searchWord.searchWord ) }}>{{ searchWord.searchWord}} - {{searchWord.num_im}}</a></li>
+                    <button type="button" class='delete' data-word='{{ searchWord.searchWord }}' data-concept='{{ concept }}'>Delete</button>
+                </ul>
+            {% endfor %}
+        </div>
+        <div class='col-md-10'>
+            {% for image in images %}
+                <img src={{ image.image }} alt={{ image.term.searchWord }}></img>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
