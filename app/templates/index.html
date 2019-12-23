@@ -21,7 +21,7 @@
     </form>
     {% for concept in concepts %}
         <ul id='{{ concept.concept }}'>
-            <li><a href= {{ url_for('addSearchWord', concept=concept.concept ) }}>{{ concept.concept }} - {{concept.num_im}}</a></li>
+            <li><a href= {{ url_for('addSearchWord', concept=concept.concept ) }}>{{ concept.concept }} ({{concept.num_im}})</a></li>
             <li>User: {{ concept.author.username }}</li>
             <button type="button" class='delete' data-concept="{{ concept.concept }}">Delete</button>
         </ul>

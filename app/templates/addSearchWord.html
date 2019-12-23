@@ -15,6 +15,8 @@
         }
     </style>
     <h1>{{ concept }}</h1>
+    <button type='button' id='export' data-concept='{{ concept }}'>Export</button>
+    <div id='exported_json'></div>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -26,11 +28,14 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+    {% if text %}
+        <span>{{ text }}</span>
+    {% endif %}
     <div class='row'>
         <div class="col-md-2">
             {% for searchWord in searchWords %}
                 <ul id='{{ searchWord.searchWord }}'>
-                    <li><a href= {{ url_for('addImage', concept=concept, searchWord=searchWord.searchWord ) }}>{{ searchWord.searchWord}} - {{searchWord.num_im}}</a></li>
+                    <li><a href= {{ url_for('addImage', concept=concept, searchWord=searchWord.searchWord ) }}>{{ searchWord.searchWord}}  ({{searchWord.num_im}})</a></li>
                     <button type="button" class='delete' data-word='{{ searchWord.searchWord }}' data-concept='{{ concept }}'>Delete</button>
                 </ul>
             {% endfor %}

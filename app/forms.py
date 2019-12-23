@@ -52,5 +52,5 @@ class AddImage(FlaskForm):
                 raise ValidationError('Already Added')
 
 class AddImport(FlaskForm):
-    path = StringField('Path to File', validators=[DataRequired()])
+    input_json = StringField('JSON String', validators=[DataRequired()])
     submit = SubmitField('Submit')

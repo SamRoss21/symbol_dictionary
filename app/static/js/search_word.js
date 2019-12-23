@@ -12,6 +12,22 @@ $(document).ready(function(){
 			});
 
 	})
+
+	$("#export").click(function(){
+		concept = $(this).data('concept')
+		console.log(concept)
+		$.ajax({
+			url : '/export_JSON',
+			dataType: "text",
+			data: {'data': concept},
+			type: 'POST',
+			success:function(exported_json){ 
+				$('#exported_json').text(exported_json)
+			}
+			});
+
+
+	})
 })
 
 
